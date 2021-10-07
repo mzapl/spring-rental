@@ -1,9 +1,8 @@
 package com.mzapl.springrental.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 public class Archetype {
@@ -15,17 +14,11 @@ public class Archetype {
     double fee, deposit;
     double weight;
 
+    @OneToMany
+    private List<Unit> units = Collections.emptyList();
 
-    public Archetype(String make, String model) {
-        this.make = make;
-        this.model = model;
-    }
-
-    public Archetype(String make, String model, double fee, double deposit) {
-        this.make = make;
-        this.model = model;
-        this.fee = fee;
-        this.deposit = deposit;
+    public List<Unit> getUnits() {
+        return units;
     }
 
     public Archetype() {

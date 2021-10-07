@@ -1,28 +1,63 @@
 package com.mzapl.springrental.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Unit {
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long Id;
 
-    boolean isAvailable;
-    @OneToOne
+    @ManyToOne
     Archetype archetype;
 
-//    ArrayList<Rental> rentals;
+    boolean isAvailable;
+    String serialNo;
 
+//    ArrayList<Rental> rentals;
 
     public Unit() {
     }
 
-    public Unit(Archetype archetype) {
-        isAvailable = true;
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public Archetype getArchetype() {
+        return archetype;
+    }
+
+    public void setArchetype(Archetype archetype) {
         this.archetype = archetype;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+
+    public String getSerialNo() {
+        return serialNo;
+    }
+
+    public void setSerialNo(String serialNo) {
+        this.serialNo = serialNo;
+    }
+
+    @Override
+    public String toString() {
+        return "Unit{" +
+                "Id=" + Id +
+                ", archetype=" + archetype +
+                ", isAvailable=" + isAvailable +
+                ", serialNo='" + serialNo + '\'' +
+                '}';
     }
 }
