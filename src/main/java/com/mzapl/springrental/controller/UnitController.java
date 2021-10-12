@@ -28,12 +28,13 @@ public class UnitController {
 
     @GetMapping("all")
     ResponseEntity<List<Unit>> getAll(){
+        System.out.println("all hit");
         return ResponseEntity.ok(unitService.findAll());
     }
 
-    @GetMapping("{id}")
-    ResponseEntity<Optional<Unit>> get(@PathVariable Long id){
-        return ResponseEntity.ok(unitService.find(id));
+    @GetMapping("get/{id}")
+    ResponseEntity<Optional<Unit>> getById(@PathVariable String id){
+        return ResponseEntity.ok(unitService.find(Long.valueOf(id)));
     }
 
     @GetMapping("by-archetype")

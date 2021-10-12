@@ -1,5 +1,7 @@
 package com.mzapl.springrental.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Archetype {
     double weight;
 
     @OneToMany
+    @JsonIgnore
     private List<Unit> units = Collections.emptyList();
 
     public List<Unit> getUnits() {
