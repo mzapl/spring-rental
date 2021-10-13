@@ -1,19 +1,86 @@
 package com.mzapl.springrental.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 public class Rental {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
+
+    @ManyToOne
     Customer customer;
-    ArrayList<Unit> units;
+
+    @OneToMany
+    List<Unit> units;
     double amount;
     double depositAmount;
 
     LocalDateTime rentalDate, returnDate;
     boolean isOpen;
 
-    public Rental(Customer customer, LocalDateTime rentalDate) {
+    public Rental() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+    public List<Unit> getUnits() {
+        return units;
+    }
+
+    public void setUnits(List<Unit> units) {
+        this.units = units;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public double getDepositAmount() {
+        return depositAmount;
+    }
+
+    public void setDepositAmount(double depositAmount) {
+        this.depositAmount = depositAmount;
+    }
+
+    public LocalDateTime getRentalDate() {
+        return rentalDate;
+    }
+
+    public void setRentalDate(LocalDateTime rentalDate) {
         this.rentalDate = rentalDate;
+    }
+
+    public LocalDateTime getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(LocalDateTime returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    public void setOpen(boolean open) {
+        isOpen = open;
     }
 }
