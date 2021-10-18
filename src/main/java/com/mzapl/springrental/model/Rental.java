@@ -2,6 +2,8 @@ package com.mzapl.springrental.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -14,7 +16,7 @@ public class Rental {
     Customer customer;
 
     @OneToMany
-    List<Unit> units;
+    List<Unit> units = Collections.emptyList();
     double amount;
     double depositAmount;
 
@@ -22,6 +24,10 @@ public class Rental {
     boolean isOpen;
 
     public Rental() {
+    }
+
+    public Rental(Customer customer) {
+        this.customer = customer;
     }
 
     public Long getId() {
@@ -82,5 +88,19 @@ public class Rental {
 
     public void setOpen(boolean open) {
         isOpen = open;
+    }
+
+    @Override
+    public String toString() {
+        return "Rental{" +
+                "id=" + id +
+                ", customer=" + customer +
+                ", units=" + units +
+                ", amount=" + amount +
+                ", depositAmount=" + depositAmount +
+                ", rentalDate=" + rentalDate +
+                ", returnDate=" + returnDate +
+                ", isOpen=" + isOpen +
+                '}';
     }
 }

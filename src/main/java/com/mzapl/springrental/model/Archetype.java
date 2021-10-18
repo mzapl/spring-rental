@@ -84,6 +84,7 @@ public class Archetype {
         this.weight = weight;
     }
 
+
     @Override
     public String toString() {
         return "Archetype{" +

@@ -19,6 +19,16 @@ public class Unit {
     public Unit() {
     }
 
+    public Unit(String serialNo) {
+        isAvailable = true;
+        this.serialNo = serialNo;
+    }
+
+    public Unit(Archetype archetype) {
+        isAvailable = true;
+        this.archetype = archetype;
+    }
+
     public Long getId() {
         return Id;
     }

@@ -17,7 +17,6 @@ import java.util.Optional;
 public class UnitController {
     @Autowired
     UnitService unitService;
-
     @Autowired
     ArchetypeService archetypeService;
 
@@ -28,7 +27,6 @@ public class UnitController {
 
     @GetMapping("all")
     ResponseEntity<List<Unit>> getAll(){
-        System.out.println("all hit");
         return ResponseEntity.ok(unitService.findAll());
     }
 

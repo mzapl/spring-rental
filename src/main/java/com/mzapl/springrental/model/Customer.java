@@ -1,19 +1,20 @@
 package com.mzapl.springrental.model;
 
 import javax.persistence.*;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    Long Id;
     private String name, surname, email;
 
     private float discount = 0;
 
     @OneToMany
-    List<Rental> rentals;
+    List<Rental> rentals = Collections.emptyList();
 
     public Customer() {
     }
@@ -25,11 +26,11 @@ public class Customer {
     }
 
     public Long getId() {
-        return id;
+        return Id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.Id = id;
     }
 
     public String getName() {
@@ -62,5 +63,25 @@ public class Customer {
 
     public void setDiscount(float discount) {
         this.discount = discount;
+    }
+
+    public List<Rental> getRentals() {
+        return rentals;
+    }
+
+    public void setRentals(List<Rental> rentals) {
+        this.rentals = rentals;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "Id=" + Id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                ", discount=" + discount +
+                ", rentals=" + rentals +
+                '}';
     }
 }
