@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.Period;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RentalService {
@@ -20,7 +23,7 @@ public class RentalService {
     }
 
     //new rental means also start of the rental time
-    public void add(Rental rental){
+    public void start(Rental rental){
         rental.setOpen(true);
         rental.setRentalDate(LocalDateTime.now());
         rentalRepository.save(rental);
@@ -31,5 +34,16 @@ public class RentalService {
         rental.setOpen(false);
         rental.setReturnDate(LocalDateTime.now());
         rentalRepository.save(rental);
+    }
+
+    //gets list of units archetypes along with cost of each of them.
+    public List<Double> getFees(Rental rental){
+        return rental.getUnits().stream().map(unit -> unit.getArchetype().getFee()).collect(Collectors.toList());
+    }
+
+    //gets rental period
+    public int getPeriod(Rental rental){
+        Period period = Period.between(rental.getRentalDate().toLocalDate(), rental.getReturnDate().toLocalDate());
+        return period.getDays();
     }
 }

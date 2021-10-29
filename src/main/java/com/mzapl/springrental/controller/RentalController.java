@@ -29,7 +29,7 @@ public class RentalController {
     @PostMapping("start")
     void start(@RequestBody Rental rental){
         customerService.addRental(rental);
-        rentalService.add(rental);
+        rentalService.start(rental);
     }
 
     @PostMapping("end")
