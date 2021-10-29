@@ -26,9 +26,14 @@ public class RentalController {
         this.unitService = unitService;
     }
 
-    @PostMapping("add")
-    void add(@RequestBody Rental rental){
+    @PostMapping("start")
+    void start(@RequestBody Rental rental){
         customerService.addRental(rental);
         rentalService.add(rental);
+    }
+
+    @PostMapping("end")
+    void end(@RequestBody Rental rental){
+        rentalService.end(rental);
     }
 }
