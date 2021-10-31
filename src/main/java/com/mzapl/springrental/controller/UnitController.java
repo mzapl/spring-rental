@@ -15,39 +15,39 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/unit/")
 public class UnitController {
-    @Autowired
+
     UnitService unitService;
-    @Autowired
     ArchetypeService archetypeService;
 
+    @Autowired
     public UnitController(UnitService unitService, ArchetypeService archetypeService) {
         this.unitService = unitService;
         this.archetypeService = archetypeService;
     }
 
     @GetMapping("all")
-    ResponseEntity<List<Unit>> getAll(){
+    public ResponseEntity<List<Unit>> getAll(){
         return ResponseEntity.ok(unitService.findAll());
     }
 
     @GetMapping("get/{id}")
-    ResponseEntity<Optional<Unit>> getById(@PathVariable String id){
+    public ResponseEntity<Optional<Unit>> getById(@PathVariable String id){
         return ResponseEntity.ok(unitService.find(Long.valueOf(id)));
     }
 
     @GetMapping("by-archetype")
-    ResponseEntity<List<Unit>> getByArchetype(@RequestBody Archetype archetype){
+    public ResponseEntity<List<Unit>> getByArchetype(@RequestBody Archetype archetype){
         return ResponseEntity.ok(unitService.find(archetype));
     }
 
     @PostMapping("add")
-    void addUnit(@RequestBody Unit unit){
+    public void addUnit(@RequestBody Unit unit){
         archetypeService.addUnit(unit);
         unitService.save(unit);
     }
 
     @PostMapping("addlist")
-    void addUnitList(@RequestBody ArrayList<Unit> units){
+    public void addUnitList(@RequestBody ArrayList<Unit> units){
         for (Unit u :
                 units) {
             addUnit(u);
@@ -55,7 +55,7 @@ public class UnitController {
     }
 
     @PostMapping("remove")
-    void removeUnit(@RequestParam Long id){
+    public void removeUnit(@RequestParam Long id){
         unitService.deleteById(id);
     }
 }

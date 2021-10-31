@@ -13,13 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/rental/")
 public class RentalController {
-    @Autowired
     RentalService rentalService;
-    @Autowired
     CustomerService customerService;
-    @Autowired
     UnitService unitService;
 
+    @Autowired
     public RentalController(RentalService rentalService, CustomerService customerService, UnitService unitService) {
         this.rentalService = rentalService;
         this.customerService = customerService;
@@ -27,13 +25,13 @@ public class RentalController {
     }
 
     @PostMapping("start")
-    void start(@RequestBody Rental rental){
+    public void start(@RequestBody Rental rental){
         customerService.addRental(rental);
         rentalService.start(rental);
     }
 
     @PostMapping("end")
-    void end(@RequestBody Rental rental){
+    public void end(@RequestBody Rental rental){
         rentalService.end(rental);
     }
 }

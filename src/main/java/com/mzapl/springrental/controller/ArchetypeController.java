@@ -10,25 +10,25 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/archetype/")
 public class ArchetypeController {
-    @Autowired
     ArchetypeService archetypeService;
 
+    @Autowired
     public ArchetypeController(ArchetypeService archetypeService) {
         this.archetypeService = archetypeService;
     }
 
     @PostMapping("add")
-    void addArchetype(@RequestBody Archetype archetype){
+    public void addArchetype(@RequestBody Archetype archetype){
         archetypeService.save(archetype);
     }
 
     @PostMapping("addlist")
-    void addArchetypeList(@RequestBody ArrayList<Archetype> archetypeList){
+    public void addArchetypeList(@RequestBody ArrayList<Archetype> archetypeList){
         archetypeService.saveAll(archetypeList);
     }
 
     @PostMapping("remove")
-    void removeArchetype(@RequestParam Long id){
+    public void removeArchetype(@RequestParam Long id){
         archetypeService.remove(id);
     }
 }
