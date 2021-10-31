@@ -11,21 +11,19 @@ public class Unit {
     @ManyToOne
     Archetype archetype;
 
-    boolean isAvailable;
+    boolean available = true;
     String serialNo;
-
-//    ArrayList<Rental> rentals;
 
     public Unit() {
     }
 
     public Unit(String serialNo) {
-        isAvailable = true;
+        available = true;
         this.serialNo = serialNo;
     }
 
     public Unit(Archetype archetype) {
-        isAvailable = true;
+        available = true;
         this.archetype = archetype;
     }
 
@@ -46,11 +44,11 @@ public class Unit {
     }
 
     public boolean isAvailable() {
-        return isAvailable;
+        return available;
     }
 
     public void setAvailable(boolean available) {
-        isAvailable = available;
+        this.available = available;
     }
 
     public String getSerialNo() {
@@ -66,7 +64,7 @@ public class Unit {
         return "Unit{" +
                 "Id=" + Id +
                 ", archetype=" + archetype +
-                ", isAvailable=" + isAvailable +
+                ", isAvailable=" + available +
                 ", serialNo='" + serialNo + '\'' +
                 '}';
     }

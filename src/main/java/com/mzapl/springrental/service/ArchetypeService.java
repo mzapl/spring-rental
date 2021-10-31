@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Service
 public class ArchetypeService {
@@ -39,6 +42,20 @@ public class ArchetypeService {
         Optional<Archetype> archetype = find(unit.getArchetype().getId());
         if(archetype.isPresent()){
             archetype.get().getUnits().add(unit);
+            save(archetype.get());
+        }
+    }
+
+    public void setAvailability(Archetype archetype, int amount){
+        archetype.setAvailable(amount);
+        save(archetype);
+    }
+
+    public void checkAvailability(Long id){
+        if(find(id).isPresent()){
+            Archetype archetype = find(id).get();
+            List<Boolean> available = archetype.getUnits().stream().map(unit -> unit.isAvailable()).filter(Predicate.isEqual(true)).collect(Collectors.toList());
+            setAvailability(archetype, available.size());
         }
     }
 }

@@ -10,15 +10,17 @@ import java.util.List;
 public class Archetype {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+    private Long id;
 
-    String make, model, description;
+    private String make, model, description;
     double fee, deposit;
     double weight;
 
     @OneToMany
     @JsonIgnore
     private List<Unit> units = Collections.emptyList();
+
+    private int available;
 
     public List<Unit> getUnits() {
         return units;
@@ -84,6 +86,13 @@ public class Archetype {
         this.weight = weight;
     }
 
+    public int getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(int available) {
+        this.available = available;
+    }
 
     @Override
     public String toString() {
