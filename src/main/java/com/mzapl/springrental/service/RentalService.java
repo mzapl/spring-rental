@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class RentalService {
-    RentalRepository rentalRepository;
-    UnitRepository unitRepository;
+    private final RentalRepository rentalRepository;
+    private final UnitRepository unitRepository;
 
     @Autowired
     public RentalService(RentalRepository rentalRepository, UnitRepository unitRepository) {
@@ -33,7 +33,13 @@ public class RentalService {
     public void end(Rental rental){
         rental.setOpen(false);
         rental.setReturnDate(LocalDateTime.now());
+        sumUp(rental);
         rentalRepository.save(rental);
+    }
+
+    public void sumUp(Rental rental){
+        double fees = getFees(rental).stream().mapToDouble(value -> value).sum();
+        rental.setAmount(fees * getPeriod(rental));
     }
 
     //gets list of units archetypes along with cost of each of them.

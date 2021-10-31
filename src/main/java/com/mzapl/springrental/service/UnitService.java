@@ -11,9 +11,10 @@ import java.util.Optional;
 
 @Service
 public class UnitService {
-    @Autowired
+
     private final UnitRepository unitRepository;
 
+    @Autowired
     public UnitService(UnitRepository unitRepository) {
         this.unitRepository = unitRepository;
     }
@@ -37,7 +38,5 @@ public class UnitService {
     public List<Unit> findAll(){
         return unitRepository.findAll();
     }
-
-
 
 }

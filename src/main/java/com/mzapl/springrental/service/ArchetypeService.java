@@ -11,9 +11,10 @@ import java.util.Optional;
 
 @Service
 public class ArchetypeService {
-    @Autowired
+
     private final ArchetypeRepository archetypeRepository;
 
+    @Autowired
     public ArchetypeService(ArchetypeRepository archetypeRepository) {
         this.archetypeRepository = archetypeRepository;
     }
