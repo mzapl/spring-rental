@@ -8,8 +8,10 @@ import java.util.List;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long Id;
-    private String name, surname, email;
+    private Long id;
+    private String name;
+    private String surname;
+    private String email;
 
     private float discount = 0;
 
@@ -26,11 +28,11 @@ public class Customer {
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        this.Id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -76,7 +78,7 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +

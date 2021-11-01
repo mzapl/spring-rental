@@ -12,8 +12,11 @@ public class Archetype {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String make, model, description;
-    double fee, deposit;
+    private String make;
+    private String model;
+    private String description;
+    double fee;
+    double deposit;
     double weight;
 
     @OneToMany

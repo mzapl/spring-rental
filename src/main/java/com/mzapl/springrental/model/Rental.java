@@ -19,7 +19,8 @@ public class Rental {
     double amount;
     double depositAmount;
 
-    LocalDateTime rentalDate, returnDate;
+    LocalDateTime rentalDate;
+    LocalDateTime returnDate;
     boolean isOpen;
 
     public Rental() {

@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Unit {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    Long Id;
+    Long id;
 
     @ManyToOne
     Archetype archetype;
@@ -18,21 +18,19 @@ public class Unit {
     }
 
     public Unit(String serialNo) {
-        available = true;
         this.serialNo = serialNo;
     }
 
     public Unit(Archetype archetype) {
-        available = true;
         this.archetype = archetype;
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public Archetype getArchetype() {
@@ -62,7 +60,7 @@ public class Unit {
     @Override
     public String toString() {
         return "Unit{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", archetype=" + archetype +
                 ", isAvailable=" + available +
                 ", serialNo='" + serialNo + '\'' +
