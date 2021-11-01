@@ -39,4 +39,18 @@ public class UnitService {
         return unitRepository.findAll();
     }
 
+    public void rentUnit(Unit unit){
+        if(unit.isAvailable()){
+            unit.setAvailable(false);
+            save(unit);
+        }
+    }
+
+    public void returnUnit(Unit unit){
+        if(!unit.isAvailable()){
+            unit.setAvailable(true);
+            save(unit);
+        }
+    }
+
 }

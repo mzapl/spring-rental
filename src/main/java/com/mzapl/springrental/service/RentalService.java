@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
 @Service
 public class RentalService {
     private final RentalRepository rentalRepository;
-    private final UnitRepository unitRepository;
+    private final UnitService unitService;
 
     @Autowired
-    public RentalService(RentalRepository rentalRepository, UnitRepository unitRepository) {
+    public RentalService(RentalRepository rentalRepository, UnitService unitService) {
         this.rentalRepository = rentalRepository;
-        this.unitRepository = unitRepository;
+        this.unitService = unitService;
     }
 
     //new rental means also start of the rental time
@@ -32,11 +32,13 @@ public class RentalService {
 
     public void addUnit(Rental rental, Unit unit){
         rental.getUnits().add(unit);
+        unitService.rentUnit(unit);
         rentalRepository.save(rental);
     }
 
     public void removeUnit(Rental rental, Unit unit){
         rental.getUnits().remove(unit);
+        unitService.returnUnit(unit);
         rentalRepository.save(rental);
     }
 
