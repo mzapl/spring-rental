@@ -1,5 +1,6 @@
 package com.mzapl.springrental.service;
 
+import com.mzapl.springrental.model.Customer;
 import com.mzapl.springrental.model.Rental;
 import com.mzapl.springrental.model.Unit;
 import com.mzapl.springrental.repository.RentalRepository;
@@ -21,6 +22,11 @@ public class RentalService {
     public RentalService(RentalRepository rentalRepository, UnitService unitService) {
         this.rentalRepository = rentalRepository;
         this.unitService = unitService;
+    }
+
+    //inits a rentalobject for a Customer
+    public void init(Customer customer){
+        rentalRepository.save(new Rental(customer));
     }
 
     //new rental means also start of the rental time
