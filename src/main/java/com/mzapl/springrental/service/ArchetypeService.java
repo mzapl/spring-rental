@@ -30,7 +30,7 @@ public class ArchetypeService {
         archetypeRepository.save(archetype);
     }
 
-    public void saveAll(ArrayList<Archetype> archetypes){
+    public void saveAll(List<Archetype> archetypes){
         archetypeRepository.saveAll(archetypes);
     }
 
