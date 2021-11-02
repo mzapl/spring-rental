@@ -1,14 +1,15 @@
 package com.mzapl.springrental.controller;
 
+import com.mzapl.springrental.model.Customer;
 import com.mzapl.springrental.model.Rental;
+import com.mzapl.springrental.model.Unit;
 import com.mzapl.springrental.service.CustomerService;
 import com.mzapl.springrental.service.RentalService;
 import com.mzapl.springrental.service.UnitService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/rental/")
@@ -22,6 +23,21 @@ public class RentalController {
         this.rentalService = rentalService;
         this.customerService = customerService;
         this.unitService = unitService;
+    }
+
+    @PostMapping("init")
+    public void init(@RequestBody Customer customer){
+        rentalService.init(customer);
+    }
+
+    @PostMapping("add-unit")
+    public void addUnit(@RequestParam Long rentalId, @RequestParam Long unitId){
+        rentalService.addUnit(rentalId, unitId);
+    }
+
+    @PostMapping("remove-unit")
+    public void removeUnit(@RequestParam Long rentalId, @RequestParam Long unitId){
+        rentalService.removeUnit(rentalId, unitId);
     }
 
     @PostMapping("start")

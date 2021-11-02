@@ -4,13 +4,14 @@ import com.mzapl.springrental.model.Customer;
 import com.mzapl.springrental.model.Rental;
 import com.mzapl.springrental.model.Unit;
 import com.mzapl.springrental.repository.RentalRepository;
-import com.mzapl.springrental.repository.UnitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,16 +37,33 @@ public class RentalService {
         rentalRepository.save(rental);
     }
 
-    public void addUnit(Rental rental, Unit unit){
-        rental.getUnits().add(unit);
-        unitService.rentUnit(unit);
-        rentalRepository.save(rental);
+    public void addUnit(Long rentalId, Long unitId){
+        Optional<Unit> optionalUnit = unitService.find(unitId);
+        Optional<Rental> optionalRental = rentalRepository.findById(rentalId);
+        if(optionalUnit.isPresent() && optionalRental.isPresent()){
+            Unit unit = unitService.find(unitId).get();
+            Rental rental = rentalRepository.findById(rentalId).get();
+            if(unit.isAvailable()){
+                rental.getUnits().add(unit);
+                unitService.rentUnit(unit);
+                rentalRepository.save(rental);
+            }
+        }
     }
 
-    public void removeUnit(Rental rental, Unit unit){
-        rental.getUnits().remove(unit);
-        unitService.returnUnit(unit);
-        rentalRepository.save(rental);
+    public void removeUnit(Long rentalId, Long unitId){
+        Optional<Unit> optionalUnit = unitService.find(unitId);
+        Optional<Rental> optionalRental = rentalRepository.findById(rentalId);
+        if(optionalUnit.isPresent() && optionalRental.isPresent()){
+            Unit unit = unitService.find(unitId).get();
+            Rental rental = rentalRepository.findById(rentalId).get();
+            if(rental.getUnits().contains(unit)){
+                rental.getUnits().remove(unit);
+                unitService.returnUnit(unit);
+                rentalRepository.save(rental);
+            }
+
+        }
     }
 
     //end of the rental means summing out the amounts, closing the rental and putting in the return date
