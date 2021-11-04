@@ -6,7 +6,7 @@ import com.mzapl.springrental.model.Unit;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class InitialTests {
+class InitialTests {
 
     @Test
     void simpleAssertion() {
@@ -20,11 +20,8 @@ public class InitialTests {
     }
 
     @Test
-    void UnitsHasArchetype(){
+    void unitAvailableByDefault(){
         Unit unit = new Unit();
-        Archetype archetype = new Archetype();
-        unit.setArchetype(archetype);
-        Assertions.assertEquals(archetype, unit.getArchetype());
+        Assertions.assertTrue(unit.isAvailable());
     }
-
 }
