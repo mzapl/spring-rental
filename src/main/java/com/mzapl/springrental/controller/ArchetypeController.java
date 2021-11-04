@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/archetype/")
@@ -23,12 +24,17 @@ public class ArchetypeController {
     }
 
     @PostMapping("addlist")
-    public void addArchetypeList(@RequestBody ArrayList<Archetype> archetypeList){
+    public void addArchetypeList(@RequestBody List<Archetype> archetypeList){
         archetypeService.saveAll(archetypeList);
     }
 
     @PostMapping("remove")
     public void removeArchetype(@RequestParam Long id){
         archetypeService.remove(id);
+    }
+
+    @PostMapping("available")
+    public void available(){
+        archetypeService.checkAvailability(1L);
     }
 }

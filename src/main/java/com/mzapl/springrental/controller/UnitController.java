@@ -42,8 +42,8 @@ public class UnitController {
 
     @PostMapping("add")
     public void addUnit(@RequestBody Unit unit){
-        archetypeService.addUnit(unit);
         unitService.save(unit);
+        archetypeService.addUnit(unit);
     }
 
     @PostMapping("addlist")
