@@ -13,17 +13,20 @@ import java.util.Optional;
 public class UnitService {
 
     private final UnitRepository unitRepository;
+    private final ArchetypeService archetypeService;
 
     @Autowired
-    public UnitService(UnitRepository unitRepository) {
+    public UnitService(UnitRepository unitRepository, ArchetypeService archetypeService) {
         this.unitRepository = unitRepository;
+        this.archetypeService = archetypeService;
     }
 
-    public void save(Unit unit){
-        unitRepository.save(unit);
+    public Unit save(Unit unit){
+        archetypeService.addUnit(unit);
+        return unitRepository.save(unit);
     }
 
-    public void deleteById(Long id){
+    public void remove(Long id){
         unitRepository.deleteById(id);
     }
 
@@ -32,7 +35,7 @@ public class UnitService {
     }
 
     public List<Unit> find(Archetype archetype){
-        return unitRepository.findAllByArchetype(archetype);
+        return unitRepository.findAllByArchetypeEquals(archetype);
     }
 
     public List<Unit> findAll(){

@@ -17,12 +17,10 @@ import java.util.Optional;
 public class UnitController {
 
     UnitService unitService;
-    ArchetypeService archetypeService;
 
     @Autowired
-    public UnitController(UnitService unitService, ArchetypeService archetypeService) {
+    public UnitController(UnitService unitService) {
         this.unitService = unitService;
-        this.archetypeService = archetypeService;
     }
 
     @GetMapping("all")
@@ -43,7 +41,6 @@ public class UnitController {
     @PostMapping("add")
     public void addUnit(@RequestBody Unit unit){
         unitService.save(unit);
-        archetypeService.addUnit(unit);
     }
 
     @PostMapping("addlist")
@@ -56,6 +53,6 @@ public class UnitController {
 
     @PostMapping("remove")
     public void removeUnit(@RequestParam Long id){
-        unitService.deleteById(id);
+        unitService.remove(id);
     }
 }
