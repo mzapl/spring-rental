@@ -5,13 +5,12 @@ import com.mzapl.springrental.service.ArchetypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/archetype/")
 public class ArchetypeController {
-    ArchetypeService archetypeService;
+    private final ArchetypeService archetypeService;
 
     @Autowired
     public ArchetypeController(ArchetypeService archetypeService) {

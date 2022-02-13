@@ -2,7 +2,6 @@ package com.mzapl.springrental.controller;
 
 import com.mzapl.springrental.model.Archetype;
 import com.mzapl.springrental.model.Unit;
-import com.mzapl.springrental.service.ArchetypeService;
 import com.mzapl.springrental.service.UnitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,7 @@ import java.util.Optional;
 @RequestMapping("/unit/")
 public class UnitController {
 
-    UnitService unitService;
+    private final UnitService unitService;
 
     @Autowired
     public UnitController(UnitService unitService) {

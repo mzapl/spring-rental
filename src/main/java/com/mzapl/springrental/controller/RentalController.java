@@ -14,9 +14,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/rental/")
 public class RentalController {
-    RentalService rentalService;
-    CustomerService customerService;
-    UnitService unitService;
+    private final RentalService rentalService;
+    private final CustomerService customerService;
+    private final UnitService unitService;
 
     @Autowired
     public RentalController(RentalService rentalService, CustomerService customerService, UnitService unitService) {

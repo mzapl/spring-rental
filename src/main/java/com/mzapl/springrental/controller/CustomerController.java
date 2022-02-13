@@ -11,8 +11,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/customer/")
 public class CustomerController {
+
+    private final CustomerService customerService;
+
     @Autowired
-    CustomerService customerService;
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @GetMapping("all")
     ResponseEntity<List<Customer>> findAll(){
