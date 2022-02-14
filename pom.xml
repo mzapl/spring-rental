@@ -43,6 +43,12 @@
 			<artifactId>junit-vintage-engine</artifactId>
 			<version>5.7.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>7.0.2.Final</version>
+		</dependency>
 	</dependencies>
 
 	<build>
